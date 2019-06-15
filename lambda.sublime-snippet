@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+[] (const ${1:int} &x_1, const ${1:int} &y_1) {
+        return ${2:x_1 > y_1};
+    }
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lambda</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

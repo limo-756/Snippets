@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+priArr(${1:a},${2:numberOfEle ,${3:endIndex}},"$1"${4:,nl});
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>priarr</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+double vm_1=0,rm_1=0;
+process_mem_usage(vm_1,rm_1);
+if(vm_1 > (1ll << 19) or rm_1 > (1ll << 19))
+{
+  $1;
+  cout << "ERROR : Your program taking too much space" << endl;
+  cout << "Terminating Process" << endl;
+  cerr << "ERROR : Your program taking too much space" << endl;
+  cerr << "Terminating Process" << endl;
+  exit(1);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mem</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

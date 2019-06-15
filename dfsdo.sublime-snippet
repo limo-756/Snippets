@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+void dfs$1(int u,int par)
+{
+  $2
+  for(auto v : $3[u])
+  {
+    if(v == par) continue;
+    $4;
+  }
+  $0
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>dfsdo</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

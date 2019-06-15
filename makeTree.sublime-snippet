@@ -1,0 +1,16 @@
+<snippet>
+    <content><![CDATA[
+makeTree $1(${2:numberOfNodes},${3:zeroIndexing = false},${4:root = 1});
+rep(${5:i},$2-1)
+{
+    pair<int,int> ${6:b} = $1.getuv();
+    ${7:adj}[$6.fi].pb($6.se);
+    $7[$6.se].pb($6.fi);
+}
+$0;
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>makeTree</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

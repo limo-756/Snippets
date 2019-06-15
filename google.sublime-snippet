@@ -1,0 +1,12 @@
+<snippet>
+  <content><![CDATA[
+int testNumber = 1;
+freopen("${1:2}.in", "r", stdin);
+cout << "Case #" << testNumber << ": " ${2:<< ans << endl};
+testNumber++;
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>google</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>
