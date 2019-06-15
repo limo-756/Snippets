@@ -1,0 +1,18 @@
+<snippet>
+  <content><![CDATA[
+bool isPrime[${1:MAXN}];
+void seive()
+{
+  reset(isPrime,${1:MAXN}, true);
+  isPrime[0] = isPrime[1] = false;
+  for (lld i = 2; i < ${1:MAXN} ; ++i)
+    if(isPrime[i])
+      for (lld j = i*i; j < ${1:MAXN}; j = j+i)
+        isPrime[j] = false;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>seive</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

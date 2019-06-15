@@ -1,0 +1,54 @@
+<snippet>
+  <content><![CDATA[
+string ${1:pattern};
+string ${2:text};
+int ${4:arr}[${3:MAXN}];
+void kmpPreprocess()
+{
+  ${4:arr}[0] = 0;
+  int j = 0;
+  for (int i = 1; i < sz(${1:pattern}); ++i)
+  {
+    if(${1:pattern}[i] == ${1:pattern}[j])
+      ${4:arr}[i] = ++j;
+    else
+    {
+      while(j!=0 and ${1:pattern}[i] != ${1:pattern}[j])
+        j = ${4:arr}[j -1];
+      if(${1:pattern}[i] == ${1:pattern}[j])
+        ${4:arr}[i] = ++j;
+      else
+        ${4:arr}[i] = 0;
+    }
+  }
+}
+int kmpSearch()
+{
+  int numOfOccurances = 0;
+  kmpPreprocess();
+  int j = 0;
+  for (int i = 0; i < sz(${2:text}); ++i)
+  {
+    if(${2:text}[i] == ${1:pattern}[j])
+    {
+      if(j == sz(${1:pattern}) -1)
+      {
+        numOfOccurances++;
+        j = ${4:arr}[j];
+      }
+      else j++;
+    }
+    else
+    {
+      while(j!=0 and ${1:pattern}[j] != ${2:text}[i]) j = ${4:arr}[j -1];
+      if(${1:pattern}[j] == ${2:text}[i]) j++;
+    }
+  }
+  return numOfOccurances;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>kmp</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

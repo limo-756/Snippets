@@ -1,0 +1,59 @@
+<snippet>
+  <content><![CDATA[
+int t_1[${1:MAXN}];
+int r_1[${1:MAXN}];
+int l_en = 0;
+void seqPrint()
+{
+  cout << "LONGEST INC SEQ" << endl;
+  int index1 = t_1[l_en];
+  while(index1 != -1)
+  {
+    cout << ${2:a}[index1] << " ";
+    index1 = r_1[index1];
+  }
+  cout << endl;
+}
+int ceilBs(int ending,int key)
+{
+  int lo = 0;
+  int hi = ending;
+  while(lo <= hi)
+  {
+    int mid = (lo + hi)/2;
+    if(mid < ending and ${2:a}[t_1[mid]] < key and key <= ${2:a}[t_1[mid + 1]])
+      return mid + 1;
+    else if(${2:a}[t_1[mid]] < key) lo = mid +1;
+    else hi = mid -1;
+  }
+  return -1;
+}
+int lonIncSeq()
+{
+  rep(i,${1:MAXN}) r_1[i] = -1;
+  t_1[0] = 0;
+  l_en = 0;
+  repi(i,${3:n} -1)
+  {
+    if(${2:a}[t_1[0]] > ${2:a}[i])
+      t_1[0] = i;
+    else if(${2:a}[t_1[l_en]] < ${2:a}[i])
+    {
+      t_1[++l_en] = i;
+      r_1[t_1[l_en]] = t_1[l_en -1];
+    }
+    else
+    {
+      int index1 = ceilBs(l_en,${2:a}[i]);
+      t_1[index1] = i;
+      r_1[t_1[index1]] = t_1[index1 -1];
+    }
+  }
+  return l_en + 1;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>incseq</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+${5:int} seg[${6:2*MAXN}];
+void ${1:build}(int i,int si,int se)
+{
+  if(si == se)
+  {
+    ${2:seg}[i] = ${3:a}[si];
+    return;
+  }
+  int mid = (si + se)/2;
+  ${1:build}(2*i + 1,si,mid);
+  ${1:build}(2*i + 2,mid+1,se);
+  ${2:seg}[i] = ${4: max(${2:seg}[2*i+1] , ${2:seg}[2*i+2])};
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>segbuild</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

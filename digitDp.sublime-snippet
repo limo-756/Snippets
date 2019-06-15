@@ -1,0 +1,89 @@
+<snippet>
+  <content><![CDATA[
+lld ${2:dsp}[${3:MAXN}][${4:200}][${5:2}];
+std::vector<lld> ${1:digit};
+lld ${7:b},${8:a};
+void convertNumToDigit(lld num)
+{
+  ${1:digit}.clear();
+  while(num > 0)
+  {
+    ${1:digit}.pb(num%10);
+    num = num/10;
+  }
+  if(sz(${1:digit})==0) ${1:digit}.pb(0);
+  reverse(${1:digit}.begin(), ${1:digit}.end());
+}
+lld recr(lld idx,lld tight,lld sum)
+{
+  // if prefix is 0
+  if(idx == n)
+  {
+    if(sum == 0) return 1;
+    return 0;
+  }
+  if(${2:dsp}[idx][sum][tight] != -1)
+  {
+    return ${2:dsp}[idx][sum][tight];
+  }
+  lld last = (tight) ? ${1:digit}[idx] : 9;
+  lld res = 0;
+  repd(i,0,last)
+  {
+    lld newTight = (i == last) ? tight : 0;
+    res = res + recr(idx+1,newTight,${6:(sum + i)%k});
+  }
+  return (${2:dsp}[idx][sum][tight] = res);
+}
+lld ${2:dsp}[${3:MAXN}][${5:2}];
+lld times_1[${3:MAXN}][${5:2}];
+lld recr(lld idx,lld tight,lld &t1)
+{
+  // if prefix is 0
+  if(idx == n) { t1 = 1;return 0;}
+  else if($2[idx][tight] != -1)
+  {
+    t1 = times_1[idx][tight];
+    return $2[idx][tight];
+  }
+  lld last = (tight) ? digit[idx] : 9;
+  lld num = 0;
+  lld temp = 0;
+  repd(i,0,last)
+  {
+    lld newT1 = 0;
+    lld newtight = (i == digit[idx]) ? tight : 0;
+    num = num + recr(idx+1,newtight,newT1);
+    t1 += newT1;
+    temp += newT1;
+    if(newT1 == 0)
+      num = num +  i;
+    else num = num + newT1 * i;
+  }
+  times_1[idx][tight] = temp;
+  return $2[idx][tight] = num;
+}
+
+lld sol()
+{
+  // if(a == b) return a;
+  convertNumToDigit(${7:b});
+  n = sz(${1:digit});
+  rep(i,${3:MAXN}) rep(j,${4:MAXM}) rep(l,${5:2}) ${2:dsp}[i][j][l] = -1;
+  // rep(i,${3:MAXN}) rep(j,${4:MAXM}) rep(l,${5:2}) times_1[i][j][l] = -1;
+  lld ans = recr(0,1,0);
+  if(${8:a} <= 1) return ${9:ans -1};
+  convertNumToDigit(${8:a} -1);
+  n = sz(${1:digit});
+  rep(i,${3:MAXN}) rep(j,${4:MAXM}) rep(l,${5:2}) ${2:dsp}[i][j][l] = -1;
+  // rep(i,${3:MAXN}) rep(j,${4:MAXM}) rep(l,${5:2}) times_1[i][j][l] = -1;
+  ans = ans - recr(0,1,0);
+  // if(ans < a and ans > b) return a;
+  return ans;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>digitdp</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

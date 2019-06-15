@@ -1,0 +1,66 @@
+<snippet>
+  <content><![CDATA[
+int treesize = 0;
+vector<int> cenTree[${2:MAXN}];
+int ${1:subSize}[${2:MAXN}];
+bool cenMarked[${2:MAXN}];
+void dfsCen(int u,int par)
+{
+  treesize = treesize + 1;
+  ${1:subSize}[u] = 1;
+  for(auto v : ${3:adj}[u])
+  {
+    if(v == par or cenMarked[v]) continue;
+    dfsCen(v,u);
+    ${1:subSize}[u] = ${1:subSize}[u] + ${1:subSize}[v];
+  }
+}
+int searchCen(int u,int par)
+{
+  bool isCen = true;
+  int heavyChild = -1;
+  for(auto v : ${3:adj}[u])
+  {
+    if(v == par or cenMarked[v]) continue;
+    if(${1:subSize}[v] > treesize/2) isCen = false;
+    if(heavyChild == -1 or ${1:subSize}[v] > ${1:subSize}[heavyChild])
+      heavyChild = v;
+  }
+  if(isCen and treesize - ${1:subSize}[u] <= treesize/2)
+    return u;
+  return searchCen(heavyChild,u);
+}
+int getCen(int u,int par)
+{
+  treesize = 0;
+  dfsCen(u,par);
+  int cen = searchCen(u,par);
+  cenMarked[cen] = true;
+  return cen;
+}
+int decompose(int u,int par)
+{
+  int cen = getCen(u,par);
+  for(auto v : ${3:adj}[cen])
+  {
+    if(v == par or cenMarked[v]) continue;
+    int newCen = decompose(v,u);
+    cenTree[newCen].pb(cen);
+    cenTree[cen].pb(newCen);
+  }
+  return cen;
+}
+int sol()
+{
+  treesize = 0;
+  reset(cenTree ,${2:MAXN});
+  reset(${1:subSize} ,${2:MAXN}, 0);
+  reset(cenMarked ,${2:MAXN}, false);
+  int root = decompose(${4:0},-1);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>centroid</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,21 @@
+<snippet>
+  <content><![CDATA[
+void ${1:update}(int i,int si,int se,int index,int diff)
+{
+  if(index < si or index > se) return;
+  else if(si == se)
+  {
+    ${2:seg}[i] = ${3: ${2:seg}[i] + diff};
+    return;
+  }
+  int mid = (si + se)/2;
+  ${1:update}(2*i+1,si,mid,index,diff);
+  ${1:update}(2*i+2,mid+1,se,index,diff);
+  ${2:seg}[i] = ${4:max}( ${2:seg}[2*i+1] , ${2:seg}[2*i+2]);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>segupdate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

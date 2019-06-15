@@ -1,0 +1,41 @@
+<snippet>
+  <content><![CDATA[
+int ${1:parent}[${4:MAXN}];
+int sparse[${4:MAXN}][${5:MAXLOG}];
+int ${2:level}[${4:MAXN}];
+void buildSparseTable()
+{
+  reset(&sparse[0][0] ,${4:MAXN},${5:MAXLOG}, -1);
+  rep(i,${3:n}) sparse[i][0] = ${1:parent}[i];
+  for (int j = 1; (1ll << j) <= ${3:n} ; ++j)
+    for(int i = 0;i < ${3:n}; i++)
+      if(sparse[i][j -1] != -1)
+        sparse[i][j] = sparse[sparse[i][j - 1]][j -1];
+}
+int lca(int u,int v)
+{
+  if(${2:level}[u] < ${2:level}[v]) swap(u,v);
+  int diff = ${2:level}[u] - ${2:level}[v];
+  while(diff)
+  {
+    int raiseBy = log2(diff);
+    u = sparse[u][raiseBy];
+    diff = diff - (1 << raiseBy);
+  }
+  if(u == v) return u;
+  for (int j = ${5:MAXLOG} -1; j >= 0; --j)
+  {
+    if(sparse[u][j] != -1 and sparse[u][j] != sparse[v][j])
+    {
+      u = sparse[u][j];
+      v = sparse[v][j];
+    }
+  }
+  return ${1:parent}[u];
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lca</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

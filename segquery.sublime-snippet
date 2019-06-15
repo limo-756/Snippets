@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+${2:int} ${1:query}(int i,int si,int se,int qs,int qe)
+{
+  if(qe<si or se < qs) return ${3:0};
+  else if(qs<=si and se<=qe) return ${4:seg}[i];
+  int mid = (si+se)/2;
+  ${2:int} ans1 = ${1:query}(2*i+1,si,mid,qs,qe);
+  ${2:int} ans2 = ${1:query}(2*i+2,mid+1,se,qs,qe);
+  return ${5:max(ans1,ans2)};
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>segquery</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

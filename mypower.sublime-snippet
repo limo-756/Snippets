@@ -1,0 +1,19 @@
+<snippet>
+  <content><![CDATA[
+${1:lld} myPow(${1:lld} n_um,${1:lld} p_ow)
+{
+  ${1:lld} r_es = 1;
+  while(p_ow > 0)
+  {
+    if(p_ow%2 != 0) r_es = (r_es * n_um)${2:%MOD};
+    n_um = (n_um*n_um)${2:%MOD};
+    p_ow = p_ow/2;
+  }
+  return r_es;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mypower</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

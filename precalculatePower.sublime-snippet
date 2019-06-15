@@ -1,0 +1,14 @@
+<snippet>
+  <content><![CDATA[
+lld power[MAXN];
+void precalculatePower()
+{
+  power[0] = 1;
+  repi(i,MAXN -1) power[i] = (power[i-1] *  2ll)%MOD;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>precalculatepower</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

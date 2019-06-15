@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+long long mod(long long x,long long y,long long k){
+    long long z=0;
+    while (y){
+        if (y&1) z=  z+x<k ? z+x : z+x-k;
+        y>>=1;
+        x= x+x<k ? x+x : x+x-k;
+    }
+    return z;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mod</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

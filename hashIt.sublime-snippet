@@ -1,0 +1,30 @@
+<snippet>
+  <content><![CDATA[
+//lld hashArr[] = { 53 , 97 , 193 , 389 , 769 , 1543 , 3079 , 6151 , 12289 , 24593 , 49157 , \
+// 98317 , 196613 , 393241 , 786433 , 1572869 , 3145739 , 6291469 , \
+// 12582917 , 25165843 , 50331653 , 100663319 , 201326611 , \
+// 402653189 , 805306457 , 1610612741 };
+class myHasher
+{
+public:
+  inline size_t operator()(const $2 & var1) const
+  {
+    size_t res = 0;
+    return res;
+  }
+};
+class myEquilator
+{
+public:
+  inline bool operator()(const $2 &var1,const $2 &var2) const
+  {
+
+  }
+};
+${1:unordered_map}< ${2:pair<int,int>} , ${3:value} , myHasher , myEquilator > $4(0);
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>hashit</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <!-- <scope>source.c++</scope> -->
+</snippet>

@@ -1,0 +1,29 @@
+<snippet>
+  <content><![CDATA[
+void extendedEuclidian(${1:lld} a_1,${1:lld} a_2,${1:lld} &x_1,${1:lld} &y_1)
+{
+  if(a_2==0)
+  {
+    x_1=1;y_1=0;
+  }
+  else
+  {
+    extendedEuclidian(a_2,a_1%a_2,x_1,y_1);
+    ${1:lld} t_emp=x_1;
+    x_1 =y_1;
+    y_1 = t_emp - (a_1/a_2)*y_1;
+  }
+}
+${1:lld} inverseIt(${1:lld} val)
+{
+  ${1:lld} x_1,y_1;
+  x_1 = 1;y_1=1;
+  extendedEuclidian(val,MOD,x_1,y_1);
+  return (x_1%MOD + MOD)%MOD;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>extelu</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

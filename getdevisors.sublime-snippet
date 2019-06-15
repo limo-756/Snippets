@@ -1,0 +1,26 @@
+<snippet>
+  <content><![CDATA[
+vector<lld> ${1:devisors};
+void getDevisors(lld n_um)
+{
+  for (lld i = 1ll; i*i <= n_um; ++i)
+  {
+    if(n_um%i == 0)
+    {
+
+      if( (n_um/i) == i)
+        ${1:devisors}.pb(i);
+      else
+      {
+        ${1:devisors}.pb(i);
+        ${1:devisors}.pb(n_um/i);
+      }
+    }
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>getdevisors</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

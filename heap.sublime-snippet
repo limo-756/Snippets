@@ -1,0 +1,84 @@
+<snippet>
+  <content><![CDATA[
+int index_1[MAXN];
+template<typename T,bool (* P) (T,T) >
+struct myHeap
+{
+  int n;
+  T *arr;
+  myHeap(int size)
+  {
+    n = 0;
+    arr = new T[size+1];
+  }
+  int parent(int i)
+  {
+    return i/2;
+  }
+  int leftChild(int i)
+  {
+    return 2*i;
+  }
+  int rightChild(int i)
+  {
+    return 2*i+1;
+  }
+  void shiftUp(int i)
+  {
+    while(i>1 and !P(arr[parent(i)],arr[i]))
+    {
+      ${2:swap(index_1[arr[i]$1],index_1[arr[parent(i)]$1])};
+      swap(arr[i],arr[parent(i)]);
+      i = parent(i);
+    }
+  }
+  void shiftDown(int i)
+  {
+    int maxIndex = i;
+    int l = leftChild(i);
+    if(l <= n and !P(arr[maxIndex],arr[l]))
+      maxIndex = l;
+    int r = rightChild(i);
+    if(r <= n and !P(arr[maxIndex],arr[r]))
+      maxIndex = r;
+    if(i != maxIndex)
+    {
+      ${2:swap(index_1[arr[i]$1],index_1[arr[maxIndex]$1])};
+      swap(arr[i],arr[maxIndex]);
+      shiftDown(maxIndex);
+    }
+  }
+  void push(T val)
+  {
+    n++;
+    ${2:index_1[val$1] = n};
+    arr[n] = val;
+    shiftUp(n);
+  }
+  T pop()
+  {
+    T res = arr[1];
+    arr[1] = arr[n--];
+    ${2:index_1[arr[1]$1] = 1};
+    shiftDown(1);
+    return res;
+  }
+  void changePriority(int i,T newVal)
+  {
+    T oldVal = arr[i];
+    arr[i] = newVal;
+    ${2:index_1[newVal$1] = index_1[oldVal$1]};
+    if(P(oldVal,newVal)) shiftDown(i);
+    else shiftUp(i);
+  }
+  int size()
+  {
+    return n;
+  }
+};
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>heap</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

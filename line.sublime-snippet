@@ -1,0 +1,47 @@
+<snippet>
+  <content><![CDATA[
+struct line
+{
+    double m,a,b,c;
+    line() {m = c = 0; }
+    line(pt c,pt d) {a = d.y - c.y; b = c.x - d.x; this->c = a * c.x + b * c.y; m = -double(a)/double(b); }
+    line(int x1,int y1,int x2,int y2) {a = y2 - y1; b = x1 - x2; c = a * x1 + b * y1; m = -double(a)/double(b); }
+    bool lieOn(pt point) {if(fabs(point.x*a + point.y*b+c) < EPS) return true; return false; }
+    bool operator||(line &otherLine) {double det = a*otherLine.b - b*otherLine.a; if(fabs(det) < EPS) return true; return false; }
+    /**
+     * return the point of intersection
+     * @param  otherLine  the other line with which we want the point of intersection
+     * @return            point of intersection
+     *                    in case of parrlel lines it return (-INT_MAX,-INT_MAX) coordinates
+     */
+    pt pointOfIntersection(line &otherLine)
+    {
+        double det = a*otherLine.b - b*otherLine.a;
+        if(fabs(det) < EPS)
+            return pt(-INT_MAX,-INT_MAX);
+        else
+        {
+            double x = (otherLine.b*c - b*otherLine.c)/det;
+            double y = (a*otherLine.c - otherLine.a*c)/det;
+            return pt(x,y);
+        }
+    }
+    line perpendicularLine(pt point)
+    {
+        line newLine;
+        if(m!=0)
+            newLine.m = -1/m;
+        else
+            newLine.m = INT_MAX;
+        newLine.a = -b;
+        newLine.b = a;
+        newLine.c = -(newLine.a * point.x + newLine.b * point.y);
+        return newLine;
+    }
+};
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>line</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

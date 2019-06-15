@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+lld l_cm = 1;
+lld c_ommonFactor = 0;
+rep(i,${1:n})
+{
+  c_ommonFactor = __gcd(l_cm,${2:arr}[i]);
+  l_cm = l_cm*${2:arr}[i];
+  if(l_cm != c_ommonFactor and c_ommonFactor!=0)
+    l_cm = l_cm/c_ommonFactor;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>lcm</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+for(lld i = 0;i < (1ll << ${2:n});i++)
+{
+  vector<int> ${1:vec};
+  for(lld j = 0;j < ${2:n};j++)
+    if(i & (1ll << j))
+      ${1:vec}.pb(${3:a}[j]);
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>allsubsequences</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

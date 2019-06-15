@@ -1,0 +1,103 @@
+<snippet>
+  <content><![CDATA[
+struct pt
+{
+  double x,y;
+  pt() { x = y = 0; }
+  pt(int a,int b) {x = a; y = b; }
+  pt(double a,double b) {x = a; y = b; }
+  pt(int a,int b,int c,int d) {x = a - c; y = b - d; }
+  pt(double a,double b,double c,double d) {x = a - c; y = b - d; }
+  pt(pt a,pt b) {x = a.x - b.x; y = a.y - b.y; }
+  double length() {return sqrt(x*x+y*y); }
+  // normalize the vector to unit length; return -1 if the vector is 0
+  int normalize()
+  {
+      double l = length();
+      if(fabs(l) < EPS)
+          return -1;
+      x = x/l;
+      y = y/l;
+      return 0;
+  }
+  pt operator-(pt otherPoint) {pt temp; temp.x = x - otherPoint.x; temp.y = y - otherPoint.y; return temp; }
+  pt operator+(pt otherPoint) {pt temp; temp.x = x + otherPoint.x; temp.y = y + otherPoint.y; return temp; }
+  bool operator<(pt otherPoint) {if(fabs(x - otherPoint.x) < EPS) return y < otherPoint.y; return x < otherPoint.x; }
+  bool operator==(pt otherPoint) {if(fabs(x - otherPoint.x) < EPS and fabs(y - otherPoint.y) < EPS) return true; return false;}
+  double operator*(pt otherPoint) {return x * otherPoint.x + y * otherPoint.y; }
+  pt operator/(double a) {pt res(x/a,y/a); return res; }
+  double operator^(pt otherPoint) {return x * otherPoint.y - otherPoint.x * y; }
+  double dist(pt otherPoint) {return sqrt((x - otherPoint.x) * (x - otherPoint.x) + (y - otherPoint.y) * (y - otherPoint.y)); }
+  /**
+   * 0 for collinear
+   * 1 for clockwise
+   * -1 for anticlockwise
+   */
+  static int orientation(pt a,pt b,pt c)
+  {
+      int res = (b.y - a.y) * (c.x - b.x) - (c.y - b.y) * (b.x - a.x);
+      if(res == 0) return res;
+      return (res > 0) ? 1 : -1;
+  }
+  bool isCollinear(pt a,pt b)
+  {
+      return orientation(*this,a,b) == 0;
+  }
+  /**
+   *
+   * test whether a simple polygon is convex
+   * return 0 if not convex, 1 if strictly convex,
+   * 2 if convex but there are points unnecesary
+   * this function does not work if the polycon is self intersecting
+   * in that case, compute the convex hull of v, and see if both have the same area
+   */
+  int isConvex(vector< pt > &polygonPoints)
+  {
+      int c0 = 0, c1 = 0, c2 = 0;
+      int n = polygonPoints.size();
+      for (int i = 0; i < n; ++i)
+      {
+          int j = (i + 1)%n;
+          int k = (j + 1)%n;
+          int ptsOrientation = orientation(polygonPoints[i], polygonPoints[j], polygonPoints[k]);
+          if(ptsOrientation == 0)
+              c0++;
+          else if(ptsOrientation > 0)
+              c1++;
+          else
+              c2++;
+      }
+      if(c1 && c2)
+          return 0;
+      else if(c0)
+          return 2;
+      return 1;
+  }
+  pt getIntersection(pt otherPoint)
+  {
+    if(x > otherPoint.y or y < otherPoint.x) return pt(-1,-1);
+    else if(x <= otherPoint.x and otherPoint.y <= y) return otherPoint;
+    else if(otherPoint.x <= x and y <= otherPoint.y) return (*this);
+    else if(x <= otherPoint.x and y <= otherPoint.y) return pt(otherPoint.x,y);
+    else if(otherPoint.x <= x and otherPoint.y <= y) return pt(x,otherPoint.y);
+    return pt(-1,-1);
+  }
+  bool isEmpty()
+  {
+    if((*this) == pt(-1,-1)) return true;
+    return false;
+  }
+  friend ostream& operator<< (ostream& os, const pt& val);
+};
+ostream& operator<< (ostream& os, const pt& num)
+{
+  string printVar = "{" + to_string(num.x) + "," + to_string(num.y) + "}";
+  os.write(printVar.c_str(),printVar.size());
+  return os;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>point</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

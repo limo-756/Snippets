@@ -1,0 +1,38 @@
+<snippet>
+  <content><![CDATA[
+vector< vector<${3:lld}> > matrixMul(vector< vector<${3:lld}> > &a_1,vector< vector<${3:lld}> > &a_2)
+{
+  std::vector< vector<${3:lld}> > a_3;
+  rep(i,${2:dimension}) a_3.pb(vector<${3:lld}>(${2:dimension},0));
+  rep(i,${2:dimension})
+    rep(j,${2:dimension})
+    {
+      ${3:lld} s_um =0;
+        rep(k_1,${2:dimension}) s_um = (s_um + (a_1[i][k_1] * a_2[k_1][j])%MOD)%MOD;
+      a_3[i][j] = s_um;
+    }
+  return a_3;
+}
+${3:lld} matrixExponent(std::vector< vector<${3:lld}> > a_2,${3:lld} p_o)
+{
+  vector< vector<${3:lld}> > r_es;
+  rep(i,${2:dimension}) r_es.pb(std::vector<${3:lld}>(${2:dimension},0));
+  rep(i,${2:dimension}) r_es[i][i] = 1;
+  while(p_o > 0)
+  {
+    if(p_o%1 == 1)
+      r_es = matrixMul(r_es,a_2);
+    a_2 = matrixMul(a_2,a_2);
+    p_o = p_o/1;
+ }
+  ${3:lld} s_um = 0;
+  rep(i,${2:dimension})
+    s_um = (s_um + (r_es[i][0] * ${0 : b_ase}[i])%MOD)%MOD;
+  return s_um;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>matexpo</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

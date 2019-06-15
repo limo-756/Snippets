@@ -1,0 +1,79 @@
+<snippet>
+  <content><![CDATA[
+struct chLine
+{
+  // line is y = m*x + c
+  lld m,c;
+  // segment in which extremem is [x,y]
+  lld x,y;
+  chLine(lld m,lld c) : m(m) ,c(c) ,x(0) ,y(0) {}
+  chLine(lld m,lld c,lld x,lld y) : m(m) ,c(c), x(x), y(y) {}
+  /**
+   * Tell us weather val lie in the interval or not
+   * @param  val  the value for which we want to test interval
+   * @return      0 if lie in it
+   *              -1 if lie left to segment
+   *              1 if lie right to segment
+   */
+  int lieInside(lld val)
+  {
+    if(x <= val and val <= y) return 0;
+    else if(val < x) return -1;
+    return 1;
+  }
+  double pointOfIntersection(chLine &l2)
+  {
+    return ((1.0*(l2.c - c))/(1.0*(m - l2.m)));
+  }
+  friend ostream& operator<< (ostream& os, const chLine& val);
+};
+ostream& operator<< (ostream& os, const chLine& num)
+{
+  string printVar = "{" + to_string(num.m) + "," + to_string(num.c) + ",(" + to_string(num.x) + "," + to_string(num.y) + ")}";
+  // string printVar = "{" + to_string(num.x) + "," + to_string(num.y) + "}";
+  // string printVar = "{" + to_string(num.m) + "," + to_string(num.c) + "}";
+  os.write(printVar.c_str(),printVar.size());
+  return os;
+}
+vector<chLine> chVec;
+bool chRedundant(chLine &l3)
+{
+  if(chVec[sz(chVec) -2].pointOfIntersection(l3) <= chVec[sz(chVec)-2].pointOfIntersection(chVec.back()) )
+    return true;
+  return false;
+}
+void chInsert(lld m,lld c)
+{
+  chLine l3(m,c);
+  while(sz(chVec) > 1 and chRedundant(l3)) chVec.pop_back();
+  chVec.back().y = floor(chVec.back().pointOfIntersection(l3));
+  l3.x = ceil(chVec.back().pointOfIntersection(l3));
+  l3.y = LLONG_MAX;
+  chVec.pb(l3);
+}
+int chBs(int starting,int ending,lld key)
+{
+  int lo = starting;
+  int hi = ending;
+  if(chVec[lo].lieInside(key) == -1)
+    return -1;
+  if(chVec[hi].lieInside(key) == 1)
+    return -1;
+  while(lo <= hi)
+  {
+    int mid = ((lo + hi)/2);
+    int midVal = chVec[mid].lieInside(key);
+    if(midVal == 0)
+      return mid;
+    else if(midVal > 0)
+      lo = mid + 1;
+    else hi = mid -1;
+  }
+  return -1;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>covexhull</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

@@ -1,0 +1,121 @@
+<snippet>
+  <content><![CDATA[
+#define fi first
+#define ll long int
+#define lld long long int
+#define mp make_pair
+#define pb push_back
+#define pii pair<int,int>
+#define pll pair<lld,lld>
+#define vi vector<int>
+#define vpii vector<pii>
+#define sz(x) ((int)(x.size()))
+#define IN(x,y) ((y).find((x))!=(y).end())
+#define PI 3.14159265
+const double EPS = 1e-9;
+#define rep(i,n) for(int i=0;i<(n);i++)
+#define repi(i,n) for(int i=1;i<=(n);i++)
+#define repd(i,a,b) for (int i = (a); i <= int(b); i++)
+#define revd(i,a,b) for (int i = (a); i >= int(b); i--)
+#define se second
+#define newline cout<<endl;
+#include <bits/stdc++.h>
+const int MOD = 1e9 + 7;
+using namespace std;
+template<typename T,typename P>
+void reset(T array[],int size,P value)
+{
+  rep(i,size) array[i] = value;
+}
+template<typename T,typename P>
+void reset(T *array,int rows,int cols,P value)
+{
+  rep(i,rows)
+    rep(j,cols)
+      *(array + i * cols + j) = value;
+}
+template<typename T>
+void reset(T v[],int size)
+{
+  for(int i = 0;i < size;i++)
+    v[i].clear();
+}
+template<typename T>
+T maxArr(T array[],int ending)
+{
+  T res = array[0];
+  rep(i,ending) res = max(array[i],res);
+  return res;
+}
+template<typename T>
+T minArr(T array[],int ending)
+{
+  T res = array[0];
+  rep(i,ending) res = min(array[i],res);
+  return res;
+}
+template<typename T,typename P=lld>
+P sumArr(T array[],int ending)
+{
+  P res = 0;
+  rep(i,ending) res = res + array[i];
+  return res;
+}
+template<typename T,typename P=lld>
+P sumArr(T array[],int ending,P mod)
+{
+  P res = 0;
+  rep(i,ending) res = (res + array[i])%mod;
+  return res;
+}
+int stringToNum(string &number)
+{
+  int num = 0;
+  int mul = 1;
+  for (int i = sz(number)-1; i >=0 ; --i)
+  {
+    num = num  + (number[i]-'0')*mul;
+    mul = mul *10;
+  }
+  return num;
+}
+int bit(lld num)
+{
+  int res = 0;
+  for (lld i = 0; (1ll << i) <= num ; ++i) res = i;
+  return res;
+}
+#include "/home/anurag/desktop/program/codeForces/templates/MYLIB.cpp"
+#include "/home/anurag/desktop/program/codeForces/templates/RANDOMIZE.cpp"
+#include "/home/anurag/desktop/program/codeForces/templates/TEST.cpp"
+#include "/home/anurag/desktop/program/codeForces/templates/MEM.cpp"
+// srand(time(0));
+// vec.resize(unique(vec.begin(), vec.end()) - vec.begin());
+// LLONG_MAX
+// getline(cin,number);
+//setbase - cout << setbase (16); cout << 100 << endl; Prints 64
+//setfill -   cout << setfill ('x') << setw (5); cout << 77 << endl; prints xxx77
+//setprecision - cout << setprecision (14) << f << endl; Prints x.xxxx
+//cout.precision(x)  cout<<fixed<<val;  // prints x digits after decimal in val
+const int MAXN = 100000 + 10;
+const int MAXM = 100000 + 10;
+const int MAXLOG = 18;
+const int MY_MAX = 1000000;
+int t,n,k,m;
+int sol()
+{
+  return 0;
+}
+int main(int argc, char const *argv[])
+{
+  ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+  // freopen("/home/anurag/desktop/program/earth/contest/input.txt", "r", stdin);
+  $0;
+  return 0;
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>mytemplate</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>
