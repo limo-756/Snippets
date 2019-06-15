@@ -1,0 +1,35 @@
+{
+	"autocomplete": true,
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
+	"draw_white_space": "all",
+	"enable_tab_scrolling": false,
+	"font_face": "",
+	"font_size": 8,
+	"highlight_line": true,
+	"ignored_packages":
+	[
+		"All Autocomplete",
+		"Anaconda",
+		"EasyClangComplete",
+		"OpenGL Shading Language (GLSL)",
+		"SublimeLinter-chktex",
+		"Terminal",
+		"Vintage"
+	],
+	"line_padding_bottom": 1,
+	"line_padding_top": 1,
+	"show_errors_inline": true,
+	"spacegray_fileicons": true,
+	"spacegray_sidebar_font_normal": true,
+	"spacegray_sidebar_tree_normal": true,
+	"spacegray_tabs_auto_width": true,
+	"spacegray_tabs_font_normal": true,
+	"spacegray_tabs_normal": true,
+	"spell_check": false,
+	"tab_size": 2,
+	"theme": "Default.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"use_tab_stops": true,
+	"word_wrap": true
+}
