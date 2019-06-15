@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+randString(${1:minLen},${2:maxLen},${3:lowerCase=0},${4:upperCase=0},${5:integer=0},${6:string extraChar=""});
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>randstring</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

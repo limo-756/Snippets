@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+allUniqueElements<${2:int}> ${1:var} = allUniqueElements<${2:int}>(${3:n},${4:lowerLimit},${5:higherLimit});
+rep(${6:i},${3:n})
+  ${7:arr}[${6:i}] = ${1:var}.next();
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>uniele</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

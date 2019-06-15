@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+randArrInitialization(${1:arr},${2:startIndex},${3:endIndex},${4:lowVal},${5:hiVal});
+$0;
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>randArrInitialization</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>
