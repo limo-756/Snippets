@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+pri2DVec${0:<T,L,(* P) (L,int,int) = print2DVar>}(${1:a[]},${2:nunberOfRows},${3:numberOfCols},"$1");
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>privec2d</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

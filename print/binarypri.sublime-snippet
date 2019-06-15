@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+priBinaryTree${0:<${5: rootType},${6:(T,int,int) = printTreeVar}>}(${1:rt},${2:si},${3:se},${4:vector<char> &indent});
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>pribinary</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>

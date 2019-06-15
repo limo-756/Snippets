@@ -1,0 +1,15 @@
+<snippet>
+  <content><![CDATA[
+void printIt($1 var,int index1,int index2)
+{
+  ${2 :if($3)}
+  {
+    cerr << "[" << index1 << "," << index2 << "]:" << var << " ";
+  }
+}
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>priit</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

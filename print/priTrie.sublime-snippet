@@ -1,0 +1,17 @@
+<snippet>
+  <content><![CDATA[
+template<typename T>
+void ${1:printTreeVar}(T *${2:rt},int num)
+{
+  if(num == -1)
+    cout << "{" << ${2:rt}->data << "," << "NULL" << "}" << endl;
+  else
+    cout << "{" << ${2:rt}->data << "," << char(${3:'a'} + num) << "}" << endl;
+}
+priTrie<${6:structName},$1>(${4:rt},${4:rt},${5:numOfEdges});
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>pritrie</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.c++</scope>
+</snippet>

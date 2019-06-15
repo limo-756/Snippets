@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+priCont${0:<individualEle,containerType,(L,int,int) = printIt>}(${1:a},${2:numberOfEle_DefMAX_INT},"$1" ${3:,nl});
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>pricont</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <scope>source.c++</scope>
+</snippet>
